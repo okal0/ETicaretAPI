@@ -15,7 +15,7 @@ namespace ETicaretAPI.Persistence.Contexts
 
         public DbSet<Product> Products_k { get; set; }
         public DbSet<Order> Orders_k { get; set; }
-        public DbSet<Customer> Customers_k { get; set; }
+        public DbSet<Customer> Customers_k { get; set; }    
 
 
     }
