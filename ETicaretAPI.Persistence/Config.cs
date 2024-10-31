@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
+
 
 namespace ETicaretAPI.Persistence
 {
-    public static class Config
+    static class Config
     {
-        static ConnectionStringSettings settings = ConfigurationManager.ConnectionStrings["SQL"];
 
      public static string GetConnectionString
         {
             get
             {
-                return settings.ConnectionString;
+                ConfigurationManager configurationManager = new();
+
+                configurationManager.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../../Presentation/ETicaretAPI.API"));
+                configurationManager.AddJsonFile("appsettings.json");
+
+                return configurationManager.GetConnectionString("DefaultConnection");
+                
             }
         }
 
