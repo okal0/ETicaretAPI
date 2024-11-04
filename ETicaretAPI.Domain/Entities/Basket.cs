@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Domain.Entities
 {
-    public class Product : BaseEntity
+    public class Basket : BaseEntity
     {
-        public string Name { get; set; }
-        public int Stock { get; set; }
-        public long Price { get; set; }
+        public string UserId { get; set; }
+        public Order order { get; set;}
 
-        public ICollection<ProductImageFile> ProductImageFiles { get; set; }
+        //public AppUser User { get; set; }
         public ICollection<BasketItem> BasketItems { get; set; }
+
+
     }
 }
