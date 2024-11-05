@@ -1,6 +1,11 @@
 ﻿using ETicaretAPI.Application.Abstractions;
+using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
+using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
+using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
+using ETicaretAPI.Application.Features.Queries.Product.GetByIdProduct;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +21,8 @@ namespace ETicaretAPI.API.Controllers
         readonly private IOrderReadRepository _orderReadRepository;
         readonly private IOrderWriteRepository _orderWriteRepository;
         readonly private ICustomerWriteRepository _customerWriteRepository;
-    
+        readonly IMediator _mediator;
+
         public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, ICustomerWriteRepository customerWriteRepository)
         {
             _productWriteRepository = productWriteRepository;
@@ -26,46 +32,45 @@ namespace ETicaretAPI.API.Controllers
             _customerWriteRepository = customerWriteRepository;
         }
         [HttpGet]
-        public async Task<ActionResult> Get()
+        public async Task Get()
         {
-            /*await _productWriteRepository.AddRangeAsync(new()
+            await _productWriteRepository.AddRangeAsync(new()
                 {
                     new() { Id = Guid.NewGuid(), Name = "Product11", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
                     new() { Id = Guid.NewGuid(), Name = "Product8", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
                     new() { Id = Guid.NewGuid(), Name = "Product9", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
                 }
                 );
-            await _productWriteRepository.SaveAsync();*/
-            return Ok(_productReadRepository.GetAll());
-        }
-        // Get by id isn't working, ERROR: expects 0x prefix
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string Id)
-        {
-            Product product = await _productReadRepository.GetByIdAsync(Id);
-
-            return Ok(product);
-        }
-
-        // Change to viewModel
-        [HttpPost]
-        public async Task<IActionResult> Post(Product product)
-        {
-            await _productWriteRepository.AddAsync(product);
             await _productWriteRepository.SaveAsync();
+        }
 
-            return Ok();
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get([FromRoute]GetByIdProductQueryRequest request)
+        {
+            GetByIdProductQueryResponse response = await _mediator.Send(request);
+
+            return Ok(response);
+        }
+
+        //modelli versiyonlara çevir bunları
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest request)
+        {
+            CreateProductCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put(Product product)
+        public async Task<ActionResult> Put([FromBody] UpdateProductCommandRequest request)
         {
-            _productWriteRepository.Update(product);
-            _productWriteRepository.SaveAsync();
-
+            UpdateProductCommandResponse response = await _mediator.Send(request);
             return Ok();
         }
-
-
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute]RemoveProductCommandRequest request)
+        {
+            RemoveProductCommandResponse response = await _mediator.Send(request);
+            return Ok();
+        }
     }
 }

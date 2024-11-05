@@ -12,7 +12,7 @@ namespace ETicaretAPI.Application.Repositories
     public interface IReadRepository<T> : IRepository<T>
         where T : BaseEntity
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(bool tracking);
         IQueryable<T> GetWhere(Expression<Func<T, bool>> predicate);
 
         Task<T> GetSingleAsync(Expression<Func<T, bool>> predicate);
