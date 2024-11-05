@@ -1,5 +1,7 @@
 ﻿using ETicaretAPI.Application.Abstractions;
 using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
+using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
+using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetByIdProduct;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
@@ -43,7 +45,7 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> Get(GetByIdProductQueryRequest request)
+        public async Task<IActionResult> Get([FromRoute]GetByIdProductQueryRequest request)
         {
             GetByIdProductQueryResponse response = await _mediator.Send(request);
 
@@ -55,6 +57,19 @@ namespace ETicaretAPI.API.Controllers
         {
             CreateProductCommandResponse response = await _mediator.Send(request);
             return Ok(response);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Put([FromBody] UpdateProductCommandRequest request)
+        {
+            UpdateProductCommandResponse response = await _mediator.Send(request);
+            return Ok();
+        }
+        [HttpDelete("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute]RemoveProductCommandRequest request)
+        {
+            RemoveProductCommandResponse response = await _mediator.Send(request);
+            return Ok();
         }
     }
 }

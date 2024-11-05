@@ -14,6 +14,6 @@ namespace ETicaretAPI.Application.Features.Commands.ProductImageFile.RemoveProdu
             throw new NotImplementedException();
         }
     }
-    {
-    }
+    
+    
 }
