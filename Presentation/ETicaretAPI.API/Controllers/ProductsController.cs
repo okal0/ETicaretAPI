@@ -23,13 +23,14 @@ namespace ETicaretAPI.API.Controllers
         readonly private ICustomerWriteRepository _customerWriteRepository;
         readonly IMediator _mediator;
 
-        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, ICustomerWriteRepository customerWriteRepository)
+        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, ICustomerWriteRepository customerWriteRepository, IMediator mediator)
         {
             _productWriteRepository = productWriteRepository;
             _productReadRepository = productReadRepository;
             _orderReadRepository = orderReadRepository;
             _orderWriteRepository = orderWriteRepository;
             _customerWriteRepository = customerWriteRepository;
+            _mediator = mediator;
         }
         [HttpGet]
         public async Task Get()
