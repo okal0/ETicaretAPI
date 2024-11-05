@@ -1,6 +1,9 @@
 ﻿using ETicaretAPI.Application.Abstractions;
+using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
+using ETicaretAPI.Application.Features.Queries.Product.GetByIdProduct;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +19,8 @@ namespace ETicaretAPI.API.Controllers
         readonly private IOrderReadRepository _orderReadRepository;
         readonly private IOrderWriteRepository _orderWriteRepository;
         readonly private ICustomerWriteRepository _customerWriteRepository;
-    
+        readonly IMediator _mediator;
+
         public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, ICustomerWriteRepository customerWriteRepository)
         {
             _productWriteRepository = productWriteRepository;
@@ -38,12 +42,19 @@ namespace ETicaretAPI.API.Controllers
             await _productWriteRepository.SaveAsync();
         }
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string Id)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> Get(GetByIdProductQueryRequest request)
         {
-            Product product = await _productReadRepository.GetByIdAsync(Id);
+            GetByIdProductQueryResponse response = await _mediator.Send(request);
 
-            return Ok(product);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest request)
+        {
+            CreateProductCommandResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
     }
 }
