@@ -12,6 +12,10 @@ using Microsoft.Extensions.Configuration;
 using System.Drawing.Text;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Persistence.Repositories;
+using ETicaretAPI.Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+
 
 namespace ETicaretAPI.Persistence
 {
@@ -23,6 +27,15 @@ namespace ETicaretAPI.Persistence
             //services.AddSingleton<IProductService, ProductService>();
 
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(Config.GetConnectionString));
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<ETicaretAPIDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();
