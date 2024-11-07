@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+builder.Services.AddAuthentication();
 
 
 var app = builder.Build();

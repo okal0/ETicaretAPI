@@ -2,6 +2,7 @@
 using ETicaretAPI.Application.Features.Commands.Product.CreateProduct;
 using ETicaretAPI.Application.Features.Commands.Product.RemoveProduct;
 using ETicaretAPI.Application.Features.Commands.Product.UpdateProduct;
+using ETicaretAPI.Application.Features.Queries.Product.GetAllProduct;
 using ETicaretAPI.Application.Features.Queries.Product.GetByIdProduct;
 using ETicaretAPI.Application.Repositories;
 using ETicaretAPI.Domain.Entities;
@@ -16,33 +17,18 @@ namespace ETicaretAPI.API.Controllers
     public class ProductsController : ControllerBase
     {
 
-        readonly private IProductWriteRepository _productWriteRepository;
-        readonly private IProductReadRepository _productReadRepository;
-        readonly private IOrderReadRepository _orderReadRepository;
-        readonly private IOrderWriteRepository _orderWriteRepository;
-        readonly private ICustomerWriteRepository _customerWriteRepository;
         readonly IMediator _mediator;
 
-        public ProductsController(IProductWriteRepository productWriteRepository, IProductReadRepository productReadRepository, IOrderReadRepository orderReadRepository, IOrderWriteRepository orderWriteRepository, ICustomerWriteRepository customerWriteRepository, IMediator mediator)
+        public ProductsController(IMediator mediator)
         {
-            _productWriteRepository = productWriteRepository;
-            _productReadRepository = productReadRepository;
-            _orderReadRepository = orderReadRepository;
-            _orderWriteRepository = orderWriteRepository;
-            _customerWriteRepository = customerWriteRepository;
+
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task Get()
+        public async Task<IActionResult> Get([FromQuery]GetAllProductQueryRequest request)
         {
-            await _productWriteRepository.AddRangeAsync(new()
-                {
-                    new() { Id = Guid.NewGuid(), Name = "Product11", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
-                    new() { Id = Guid.NewGuid(), Name = "Product8", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
-                    new() { Id = Guid.NewGuid(), Name = "Product9", Price = 100, CreatedDate = DateTime.Now, Stock = 15 },
-                }
-                );
-            await _productWriteRepository.SaveAsync();
+            GetAllProductQueryResponse response = await _mediator.Send(request);
+            return Ok(response);
         }
 
         [HttpGet("{Id}")]
@@ -53,7 +39,6 @@ namespace ETicaretAPI.API.Controllers
             return Ok(response);
         }
 
-        //modelli versiyonlara çevir bunları
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest request)
         {
