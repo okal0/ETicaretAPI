@@ -23,9 +23,8 @@ namespace ETicaretAPI.Persistence
     {
         public static void AddPersistenceServices(this IServiceCollection services)
         {
-   
-            //services.AddSingleton<IProductService, ProductService>();
 
+            //services.AddSingleton<IProductService, ProductService>();
             services.AddDbContext<ETicaretAPIDbContext>(options => options.UseSqlServer(Config.GetConnectionString));
             services.AddIdentity<AppUser, AppRole>(options =>
             {
@@ -36,6 +35,7 @@ namespace ETicaretAPI.Persistence
                 options.Password.RequireUppercase = false;
             }).AddEntityFrameworkStores<ETicaretAPIDbContext>()
             .AddDefaultTokenProviders();
+
 
             services.AddScoped<ICustomerReadRepository, CustomerReadRepository>();
             services.AddScoped<ICustomerWriteRepository, CustomerWriteRepository>();

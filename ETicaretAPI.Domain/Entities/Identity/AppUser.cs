@@ -11,5 +11,6 @@ namespace ETicaretAPI.Domain.Entities.Identity
     {
         public string NameSurname { get; set; }
 
+
     }
 }
