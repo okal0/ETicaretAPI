@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using ETicaretAPI.Application.Abstractions.Token;
+using ETicaretAPI.Infrastructure.Services.Token;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,10 @@ namespace ETicaretAPI.Infrastructure
 {
     public static class ServiceRegistration
     {
-        public static void AddApplicationServices(this IServiceCollection services)
+        public static void AddInfraServices(this IServiceCollection services)
         {
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddScoped<ITokenHandler, TokenHandler>();
         }
+
     }
 }

@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.35" />
   </ItemGroup>
+
+
+    <ItemGroup>
+	    <ProjectReference Include="..\ETicaretAPI.Application\ETicaretAPI.Application.csproj" />
+    </ItemGroup>
 
 </Project>
