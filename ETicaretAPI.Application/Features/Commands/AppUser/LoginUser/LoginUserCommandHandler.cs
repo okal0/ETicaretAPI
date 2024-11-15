@@ -31,7 +31,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
             if(user == null)
                 user = await _userManager.FindByEmailAsync(request.UsernameOrEmail);
             if (user == null)
-                throw new UserCreateFailedException();
+                throw new UserLoginFailedException();
      
                 SignInResult result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, false);
                 if(result.Succeeded)
@@ -42,7 +42,7 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.LoginUser
 
             return new LoginUserErrorCommandResponse() 
             {
-                Message = "Kullanıcı adı veya şifre hatalıdır."
+                Message = "Kullanıcı adı veya şifre hatalı."
             };
 
             //throw new AuthenticationErrorException();
