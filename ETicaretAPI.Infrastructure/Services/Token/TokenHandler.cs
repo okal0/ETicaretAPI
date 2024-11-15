@@ -21,7 +21,7 @@ namespace ETicaretAPI.Infrastructure.Services.Token
         {
             TokenDTO token = new();
 
-            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token.SecurityKey"]));
+            SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token:SecurityKey"]));
 
             // şifrelenmiş kimlik
             SigningCredentials credentials = new(securityKey, SecurityAlgorithms.HmacSha256);
