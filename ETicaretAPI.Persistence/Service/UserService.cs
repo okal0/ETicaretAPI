@@ -1,5 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions;
-using ETicaretAPI.Application.Data_Objects.User;
+using ETicaretAPI.Application.DTOs.User;
 using ETicaretAPI.Domain.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using System;

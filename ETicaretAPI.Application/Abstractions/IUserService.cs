@@ -1,4 +1,4 @@
-﻿using ETicaretAPI.Application.Data_Objects.User;
+﻿using ETicaretAPI.Application.DTOs.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;

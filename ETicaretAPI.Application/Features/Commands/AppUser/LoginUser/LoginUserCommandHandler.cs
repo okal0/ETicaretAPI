@@ -1,5 +1,5 @@
 ﻿using ETicaretAPI.Application.Abstractions.Token;
-using ETicaretAPI.Application.Data_Objects;
+using ETicaretAPI.Application.DTOs;
 using ETicaretAPI.Application.Exception;
 using MediatR;
 using Microsoft.AspNetCore.Identity;

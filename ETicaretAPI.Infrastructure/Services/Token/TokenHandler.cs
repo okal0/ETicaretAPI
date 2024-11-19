@@ -1,6 +1,6 @@
 ﻿
 using ETicaretAPI.Application.Abstractions.Token;
-using ETicaretAPI.Application.Data_Objects;
+using ETicaretAPI.Application.DTOs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

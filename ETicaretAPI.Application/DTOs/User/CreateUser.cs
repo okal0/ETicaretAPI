@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Data_Objects.User
+namespace ETicaretAPI.Application.DTOs.User
 {
     public class CreateUser
     {
