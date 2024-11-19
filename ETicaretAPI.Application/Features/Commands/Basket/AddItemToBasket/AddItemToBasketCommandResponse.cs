@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ETicaretAPI.Application.Features.Commands.Basket.AddItemBasket
+namespace ETicaretAPI.Application.Features.Commands.Basket.AddItemToBasket
 {
     public class AddItemToBasketCommandResponse
     {

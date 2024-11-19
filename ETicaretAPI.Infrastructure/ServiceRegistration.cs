@@ -16,6 +16,7 @@ namespace ETicaretAPI.Infrastructure
         public static void AddInfraServices(this IServiceCollection services)
         {
             services.AddScoped<ITokenHandler, TokenHandler>();
+            
         }
 
     }
