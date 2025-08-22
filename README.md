@@ -1,6 +1,6 @@
 # 🛒 ETicaretAPI
 
-ETicaret sitesinin API kısmını sağlamaktadır.
+ETicaret sitesinin API kısmında CRUD işlemlerini sağlamaktadır.
 
 ## Özellikler
 - Onion Architecture yaklaşımı  
