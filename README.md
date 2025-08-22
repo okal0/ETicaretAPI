@@ -4,7 +4,7 @@ The API part of the e-commerce site provides **CRUD operations**.
 
 ---
 
-## 🚀 Features
+## Features
 - Follows the **Onion Architecture** approach  
 - Database management using **Entity Framework Core**  
 - Implements **Repository + Unit of Work** pattern  
@@ -13,7 +13,7 @@ The API part of the e-commerce site provides **CRUD operations**.
 
 ---
 
-## 📂 Layers
+## Layers
 - **ETicaretAPI.API** → API entry point (Controllers, Middleware)  
 - **ETicaretAPI.Application** → Business logic (Services, Use Cases)  
 - **ETicaretAPI.Domain** → Core entities and interfaces  
