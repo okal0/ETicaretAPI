@@ -1,19 +1,21 @@
 # 🛒 ETicaretAPI
 
-ETicaret sitesinin API kısmında CRUD işlemlerini sağlamaktadır.
-
-## Özellikler
-- Onion Architecture yaklaşımı  
-- Entity Framework Core ile veritabanı yönetimi  
-- Repository + Unit of Work pattern kullanılmıştır
-- Dependency Injection desteği  
-- Swagger/OpenAPI (eklenecek)  
+The API part of the e-commerce site provides **CRUD operations**.  
 
 ---
 
-##  Katmanlar
-- **ETicaretAPI.API** → API giriş noktası (Controllers, Middleware)  
-- **ETicaretAPI.Application** → İş mantığı (Services, Use Cases)  
-- **ETicaretAPI.Domain** → Temel varlıklar (Entities, Interfaces)  
-- **ETicaretAPI.Infrastructure** → Harici servisler (ör: Mail, dış entegrasyonlar)  
-- **ETicaretAPI.Persistence** → Veritabanı erişimi (DbContext, Repositories) 
+## 🚀 Features
+- Follows the **Onion Architecture** approach  
+- Database management using **Entity Framework Core**  
+- Implements **Repository + Unit of Work** pattern  
+- Supports **Dependency Injection**  
+- **Swagger/OpenAPI** (to be added)  
+
+---
+
+## 📂 Layers
+- **ETicaretAPI.API** → API entry point (Controllers, Middleware)  
+- **ETicaretAPI.Application** → Business logic (Services, Use Cases)  
+- **ETicaretAPI.Domain** → Core entities and interfaces  
+- **ETicaretAPI.Infrastructure** → External services (e.g., Email, third-party integrations)  
+- **ETicaretAPI.Persistence** → Database access (DbContext, Repositories)  
